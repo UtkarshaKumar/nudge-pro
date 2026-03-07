@@ -1,0 +1,26 @@
+# Nudge Pro - Python Dependencies
+
+# Core
+faster-whisper>=0.10.0
+sounddevice>=0.4.6
+numpy>=1.24.0
+
+# Video/Screen
+ffmpeg-python>=0.2.0
+opencv-python>=4.8.0  # For frame processing
+
+# AI/LLM
+openai>=1.0.0  # For OpenAI API
+anthropic>=0.18.0  # For Claude API (future)
+
+# Storage
+sqlalchemy>=2.0.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# Export
+python-docx>=1.1.0
+Pillow>=10.0.0  # Image processing
+
+# Utilities
+tqdm>=4.66.0

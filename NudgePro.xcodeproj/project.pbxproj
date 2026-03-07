@@ -1,0 +1,786 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0900F15CCCC3ECC6129AF3B7 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9044A62EA2E2C651A44546 /* ExportService.swift */; };
+		0F56A1D18402690B9AE63BEB /* OpenAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8CB761401876F873D184E /* OpenAIProvider.swift */; };
+		11225658F7D4121FD03C25CF /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA7B0A17423D1BA731790B /* Errors.swift */; };
+		23503C3C4F546C1A30699DE9 /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100EAFA0E91880C9DB3784 /* RecordingViewModel.swift */; };
+		25B6E32A8F5289543A803E8B /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6A0DABC0FCFA7C0523BEE /* UserPreferences.swift */; };
+		28584DA28A392A9C2C1A4040 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C774E821BF2AD0D57D98FC1 /* SettingsViewModel.swift */; };
+		3475A40B33ABDA799C4C74B4 /* MonitorSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987DCCF524575ACF927B57A /* MonitorSelectionMode.swift */; };
+		358A8F3DDDE3B022CC2E574E /* NativeScreenCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AB38FF66AEB085188EF3FB /* NativeScreenCaptureService.swift */; };
+		44BB0902AB39B1446D8EFD09 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C9179751BB01C008444516 /* DesignTokens.swift */; };
+		45192C10577E61207F2CC10A /* ProcessingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F259785C98801433739E85EE /* ProcessingQueue.swift */; };
+		464CEEBDB8F4E358FB1892CD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6817ABFF4F602868D2D27 /* Strings.swift */; };
+		4C8EB50EAB8DD5091892CC82 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C25B553E54EDA6EB138B65 /* ButtonStyles.swift */; };
+		5A8D57490BF32474725667A1 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E168B7DE0884095E2E0CB /* SessionDetailView.swift */; };
+		65E76D6A4F80F61DA7B40D06 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB97F09505F5391490AD53 /* Enums.swift */; };
+		68FC3E60A91E3E0334E57BD0 /* CustomProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CAB99AABF826B753E7D01B /* CustomProvider.swift */; };
+		6F5F9271D2A1CE5E0AB5583E /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4D003BA47D45B64AB751 /* PermissionsManager.swift */; };
+		83E434248C672462B8D3F3A6 /* NudgeProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432CE1E13B46ADD98E16EF2A /* NudgeProApp.swift */; };
+		88B4C3E3810A459F8CC5B95A /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32446C8ED1D5AA982135E4 /* SessionStore.swift */; };
+		8FB1AAB983AC92FB6552354A /* MockRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A7D3B7B22FF7C69922D4C9 /* MockRecordingService.swift */; };
+		935DAC767613FCA542C40E0A /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1D82E6E0EFE4E2D2C18C3 /* RecordingView.swift */; };
+		A2826671EBFBEC66C5379245 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17608C217EF20A9270454B /* Session.swift */; };
+		A540431218D570914E0CB369 /* LinearCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7035732FA7B260F374BF097B /* LinearCard.swift */; };
+		B1B05320C1605C5F2198A8EC /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B055324C04FE68FD0D5FB /* TranscriptionService.swift */; };
+		B690815A5F8E5C4EDFC7B15B /* RecordingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4883746AB251BA70049C835 /* RecordingServiceProtocol.swift */; };
+		B7D87C79397B884C00F67B5E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063937109435C9DD6C5E589 /* OnboardingView.swift */; };
+		BB4A6485E76D6F69FBF887EC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED818EFFCB97EDD150F5146 /* SettingsView.swift */; };
+		BF78B31E5017D6EA356707CF /* DisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39CBEFFE326A07DF12C7423 /* DisplayManager.swift */; };
+		C0F15A4017DFE13FF0AECE14 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CEA6136B674DEC1F21ABD /* Theme.swift */; };
+		CC2460FDA8CE3AAFD87BA9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7C6BD7229544E817D86203A /* Assets.xcassets */; };
+		D5341B6088B5E1D096B56E3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E512A008FB6A1198AB4989 /* AppDelegate.swift */; };
+		DC3B887F569CF59F5857B36E /* LinearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7BB12839A1E0FECB89E40E /* LinearButton.swift */; };
+		DDAD274CD4512B02360B27FB /* LLMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE45BF49DB0075F3DE1226B /* LLMService.swift */; };
+		E6AFDF277E0C1A4FDA167B34 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA07A391A54A4030EF8C4B /* AppState.swift */; };
+		E73B20AEE2269E902ECF88C5 /* MeetingTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918C479664B214A86BF026B /* MeetingTemplate.swift */; };
+		E8A1C333E4F6E30C9951C872 /* OllamaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6739D2BC70D20A46836777F /* OllamaProvider.swift */; };
+		EB786A4919BE431B0AE1BE2D /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52B6926CACEB5F7C64ECDF9 /* TimeIntervalExtension.swift */; };
+		EED245E2F54F46CC9797FB17 /* AnthropicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9620012C95316FE7D0678D4 /* AnthropicProvider.swift */; };
+		F11B3CF5BCAD4F9467B6FE45 /* whisper_transcribe.py in Resources */ = {isa = PBXBuildFile; fileRef = 34AE9A7C43B240ADCAA8F9D2 /* whisper_transcribe.py */; };
+		F2302AA2701CCD8D6B0A5032 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460C3AB65CCC5AD6D22CF888 /* PermissionStatus.swift */; };
+		FB1D9AFFC405E7D16898A6DE /* LLMProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39179E71BAC255B5161CB47 /* LLMProviderProtocol.swift */; };
+		FE8D05104A3491E23C739D06 /* AudioDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02E51BD173EF63A9CFBA936 /* AudioDeviceManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		054CEA6136B674DEC1F21ABD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		05B6C7D547DBCB0DEA6871DE /* requirements.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = requirements.txt; sourceTree = "<group>"; };
+		09CAB99AABF826B753E7D01B /* CustomProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProvider.swift; sourceTree = "<group>"; };
+		1918C479664B214A86BF026B /* MeetingTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTemplate.swift; sourceTree = "<group>"; };
+		1D9212268EDCB41A956AEAA0 /* engine.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = engine.py; sourceTree = "<group>"; };
+		2A17608C217EF20A9270454B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		34AE9A7C43B240ADCAA8F9D2 /* whisper_transcribe.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = whisper_transcribe.py; sourceTree = "<group>"; };
+		3DB8CB761401876F873D184E /* OpenAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIProvider.swift; sourceTree = "<group>"; };
+		40C6A0DABC0FCFA7C0523BEE /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		432CE1E13B46ADD98E16EF2A /* NudgeProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeProApp.swift; sourceTree = "<group>"; };
+		45AB38FF66AEB085188EF3FB /* NativeScreenCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenCaptureService.swift; sourceTree = "<group>"; };
+		460C3AB65CCC5AD6D22CF888 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
+		47A7D3B7B22FF7C69922D4C9 /* MockRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecordingService.swift; sourceTree = "<group>"; };
+		48CB97F09505F5391490AD53 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		4C774E821BF2AD0D57D98FC1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		5063937109435C9DD6C5E589 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		51B9AB4091391EED5DCBE9CA /* whisper_transcribe.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = whisper_transcribe.py; sourceTree = "<group>"; };
+		59C25B553E54EDA6EB138B65 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		686B055324C04FE68FD0D5FB /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		6C7BB12839A1E0FECB89E40E /* LinearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearButton.swift; sourceTree = "<group>"; };
+		6D1539E21D897B8CA72C7119 /* selector.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = selector.py; sourceTree = "<group>"; };
+		7035732FA7B260F374BF097B /* LinearCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearCard.swift; sourceTree = "<group>"; };
+		781BCCBDBCC254F7929E38F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8AF1D82E6E0EFE4E2D2C18C3 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		937E168B7DE0884095E2E0CB /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		98F6817ABFF4F602868D2D27 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		9987DCCF524575ACF927B57A /* MonitorSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorSelectionMode.swift; sourceTree = "<group>"; };
+		9F9D2EDC8A25393B72D53923 /* NudgePro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NudgePro.entitlements; sourceTree = "<group>"; };
+		A6739D2BC70D20A46836777F /* OllamaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OllamaProvider.swift; sourceTree = "<group>"; };
+		AEE06C969A5FC60ACA227D0D /* database.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = database.py; sourceTree = "<group>"; };
+		B39179E71BAC255B5161CB47 /* LLMProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMProviderProtocol.swift; sourceTree = "<group>"; };
+		BF7A54C924C8C037174C6E46 /* ollama.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = ollama.py; sourceTree = "<group>"; };
+		C6E512A008FB6A1198AB4989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C9620012C95316FE7D0678D4 /* AnthropicProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicProvider.swift; sourceTree = "<group>"; };
+		CBB70D6F5E7515E6D0217D3B /* frame_extractor.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = frame_extractor.py; sourceTree = "<group>"; };
+		CD9044A62EA2E2C651A44546 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		D52B6926CACEB5F7C64ECDF9 /* TimeIntervalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtension.swift; sourceTree = "<group>"; };
+		D7DDC53C6F6BDB6C9686FC64 /* NudgePro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NudgePro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF32446C8ED1D5AA982135E4 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		E02E51BD173EF63A9CFBA936 /* AudioDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceManager.swift; sourceTree = "<group>"; };
+		E0C9179751BB01C008444516 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		E47F4D003BA47D45B64AB751 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
+		E8100EAFA0E91880C9DB3784 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		EBBA07A391A54A4030EF8C4B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		F259785C98801433739E85EE /* ProcessingQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingQueue.swift; sourceTree = "<group>"; };
+		F39CBEFFE326A07DF12C7423 /* DisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayManager.swift; sourceTree = "<group>"; };
+		F4883746AB251BA70049C835 /* RecordingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingServiceProtocol.swift; sourceTree = "<group>"; };
+		F7C6BD7229544E817D86203A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9592B60DAFEFDBDC21EF89F /* action_extractor.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = action_extractor.py; sourceTree = "<group>"; };
+		FED818EFFCB97EDD150F5146 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FEE45BF49DB0075F3DE1226B /* LLMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMService.swift; sourceTree = "<group>"; };
+		FFBA7B0A17423D1BA731790B /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		067F24AC4CEE95E1E5369388 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FED818EFFCB97EDD150F5146 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		123083422DCA144FCCE4F2F2 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		126DAEB21B6A3659CA25DA50 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1F6991CE04C26519ADA0B7C7 /* Configuration */,
+				4F33731C88D3B4E8D96F39BC /* Processing */,
+				5BEA298F09D113E37B1FC594 /* Recording */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		1D7BADF5A25F07C391F47B3E /* providers */ = {
+			isa = PBXGroup;
+			children = (
+				BF7A54C924C8C037174C6E46 /* ollama.py */,
+			);
+			path = providers;
+			sourceTree = "<group>";
+		};
+		1EDC5C12EC726DA196591929 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				E0C9179751BB01C008444516 /* DesignTokens.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		1F6991CE04C26519ADA0B7C7 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		289121A7764D63569800510C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D8113EF8A13F490AF87C5844 /* ViewModels */,
+				E5B998CF04623D262D034EBA /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3055D2237D1CE828AE56B491 /* providers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = providers;
+			sourceTree = "<group>";
+		};
+		3BDE8E30BA4D7C52359CD18B /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				98F6817ABFF4F602868D2D27 /* Strings.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		4376E5CE69E4F65FCFB3B1CE /* audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
+		47A28A32F4E73DEE80D4EEBC /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		4AA33A62BC7B7B25B86F6FD6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C6E512A008FB6A1198AB4989 /* AppDelegate.swift */,
+				EBBA07A391A54A4030EF8C4B /* AppState.swift */,
+				432CE1E13B46ADD98E16EF2A /* NudgeProApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4F33731C88D3B4E8D96F39BC /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				F259785C98801433739E85EE /* ProcessingQueue.swift */,
+			);
+			path = Processing;
+			sourceTree = "<group>";
+		};
+		5118C12BA487D0A9EE340F49 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7C6BD7229544E817D86203A /* Assets.xcassets */,
+				F48FA8D9F0275F4F9DFE299F /* Scripts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		51F7F3FB2D1DC4B1DB9FB5A3 = {
+			isa = PBXGroup;
+			children = (
+				B2FC5432A846EF406D5700F7 /* Core */,
+				E2F6D0D6A0A72E10ED459AC1 /* NudgePro */,
+				E636924829E6005401E6FEF1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5BEA298F09D113E37B1FC594 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		61A34D12E89982F247E31D7E /* History */ = {
+			isa = PBXGroup;
+			children = (
+				937E168B7DE0884095E2E0CB /* SessionDetailView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		6E448702ED5A272F46104A9F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4376E5CE69E4F65FCFB3B1CE /* audio */,
+				73A2A3AD4C61810E2DB01F55 /* extraction */,
+				A6D472026BBF16E8D4D1B84E /* integrations */,
+				D63D5CA654905F6789955567 /* screen */,
+				8FBB3CC9F2D9572FCBE9AA45 /* storage */,
+				C20A78739A3367DF72443502 /* transcription */,
+				76B668FF728360275DA633DA /* vision */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		73A2A3AD4C61810E2DB01F55 /* extraction */ = {
+			isa = PBXGroup;
+			children = (
+				F9592B60DAFEFDBDC21EF89F /* action_extractor.py */,
+			);
+			path = extraction;
+			sourceTree = "<group>";
+		};
+		76B668FF728360275DA633DA /* vision */ = {
+			isa = PBXGroup;
+			children = (
+				CBB70D6F5E7515E6D0217D3B /* frame_extractor.py */,
+				1D7BADF5A25F07C391F47B3E /* providers */,
+			);
+			path = vision;
+			sourceTree = "<group>";
+		};
+		8FBB3CC9F2D9572FCBE9AA45 /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				AEE06C969A5FC60ACA227D0D /* database.py */,
+			);
+			path = storage;
+			sourceTree = "<group>";
+		};
+		90A64441DC4743DD1725A3D0 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				123083422DCA144FCCE4F2F2 /* Mappers */,
+				D51D44CC4ED49A62B096D7B4 /* Repositories */,
+				C7DA5B179A7BC76BDC9E9AF9 /* Services */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		931FACE9B7C4A7826839D1CD /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				48CB97F09505F5391490AD53 /* Enums.swift */,
+				FFBA7B0A17423D1BA731790B /* Errors.swift */,
+				96773A11995EE400A1BA73A1 /* Entities */,
+				F8CA04FC3B3ACB33AA68512A /* Enums */,
+				B772B1F28BC9C257B68C407E /* Protocols */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		96773A11995EE400A1BA73A1 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				1918C479664B214A86BF026B /* MeetingTemplate.swift */,
+				9987DCCF524575ACF927B57A /* MonitorSelectionMode.swift */,
+				460C3AB65CCC5AD6D22CF888 /* PermissionStatus.swift */,
+				2A17608C217EF20A9270454B /* Session.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A6D472026BBF16E8D4D1B84E /* integrations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = integrations;
+			sourceTree = "<group>";
+		};
+		A71992E1A31CDD6664671F7F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E02E51BD173EF63A9CFBA936 /* AudioDeviceManager.swift */,
+				F39CBEFFE326A07DF12C7423 /* DisplayManager.swift */,
+				47A7D3B7B22FF7C69922D4C9 /* MockRecordingService.swift */,
+				45AB38FF66AEB085188EF3FB /* NativeScreenCaptureService.swift */,
+				5063937109435C9DD6C5E589 /* OnboardingView.swift */,
+				E47F4D003BA47D45B64AB751 /* PermissionsManager.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		B2FC5432A846EF406D5700F7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				05B6C7D547DBCB0DEA6871DE /* requirements.txt */,
+				47A28A32F4E73DEE80D4EEBC /* scripts */,
+				6E448702ED5A272F46104A9F /* src */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B772B1F28BC9C257B68C407E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F4883746AB251BA70049C835 /* RecordingServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C20A78739A3367DF72443502 /* transcription */ = {
+			isa = PBXGroup;
+			children = (
+				1D9212268EDCB41A956AEAA0 /* engine.py */,
+				51B9AB4091391EED5DCBE9CA /* whisper_transcribe.py */,
+			);
+			path = transcription;
+			sourceTree = "<group>";
+		};
+		C3AC761D9F666A0B9037E310 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				59C25B553E54EDA6EB138B65 /* ButtonStyles.swift */,
+				6C7BB12839A1E0FECB89E40E /* LinearButton.swift */,
+				7035732FA7B260F374BF097B /* LinearCard.swift */,
+				054CEA6136B674DEC1F21ABD /* Theme.swift */,
+				D52B6926CACEB5F7C64ECDF9 /* TimeIntervalExtension.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C7DA5B179A7BC76BDC9E9AF9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C9620012C95316FE7D0678D4 /* AnthropicProvider.swift */,
+				09CAB99AABF826B753E7D01B /* CustomProvider.swift */,
+				CD9044A62EA2E2C651A44546 /* ExportService.swift */,
+				B39179E71BAC255B5161CB47 /* LLMProviderProtocol.swift */,
+				FEE45BF49DB0075F3DE1226B /* LLMService.swift */,
+				A6739D2BC70D20A46836777F /* OllamaProvider.swift */,
+				3DB8CB761401876F873D184E /* OpenAIProvider.swift */,
+				DF32446C8ED1D5AA982135E4 /* SessionStore.swift */,
+				686B055324C04FE68FD0D5FB /* TranscriptionService.swift */,
+				40C6A0DABC0FCFA7C0523BEE /* UserPreferences.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C7FE46A56CBA7C8BF70EC0DE /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				8AF1D82E6E0EFE4E2D2C18C3 /* RecordingView.swift */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		D51D44CC4ED49A62B096D7B4 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D63D5CA654905F6789955567 /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				6D1539E21D897B8CA72C7119 /* selector.py */,
+				3055D2237D1CE828AE56B491 /* providers */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
+		D8113EF8A13F490AF87C5844 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E8100EAFA0E91880C9DB3784 /* RecordingViewModel.swift */,
+				4C774E821BF2AD0D57D98FC1 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E2F6D0D6A0A72E10ED459AC1 /* NudgePro */ = {
+			isa = PBXGroup;
+			children = (
+				781BCCBDBCC254F7929E38F6 /* Info.plist */,
+				9F9D2EDC8A25393B72D53923 /* NudgePro.entitlements */,
+				4AA33A62BC7B7B25B86F6FD6 /* App */,
+				126DAEB21B6A3659CA25DA50 /* Application */,
+				1EDC5C12EC726DA196591929 /* Design */,
+				931FACE9B7C4A7826839D1CD /* Domain */,
+				EF16AC91E2852D67C4DFCEE6 /* Entitlements */,
+				90A64441DC4743DD1725A3D0 /* Infrastructure */,
+				3BDE8E30BA4D7C52359CD18B /* Localization */,
+				289121A7764D63569800510C /* Presentation */,
+				5118C12BA487D0A9EE340F49 /* Resources */,
+			);
+			path = NudgePro;
+			sourceTree = "<group>";
+		};
+		E5B998CF04623D262D034EBA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3AC761D9F666A0B9037E310 /* Components */,
+				61A34D12E89982F247E31D7E /* History */,
+				A71992E1A31CDD6664671F7F /* Onboarding */,
+				C7FE46A56CBA7C8BF70EC0DE /* Recording */,
+				067F24AC4CEE95E1E5369388 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E636924829E6005401E6FEF1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7DDC53C6F6BDB6C9686FC64 /* NudgePro.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF16AC91E2852D67C4DFCEE6 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entitlements;
+			sourceTree = "<group>";
+		};
+		F48FA8D9F0275F4F9DFE299F /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				34AE9A7C43B240ADCAA8F9D2 /* whisper_transcribe.py */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		F8CA04FC3B3ACB33AA68512A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7A230887A4FADE389EE69C75 /* NudgePro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 030338D5FFED869296207814 /* Build configuration list for PBXNativeTarget "NudgePro" */;
+			buildPhases = (
+				9F85FA12B1887477D8AA0930 /* Sources */,
+				7D080DFC77B68EA52CC04995 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NudgePro;
+			packageProductDependencies = (
+			);
+			productName = NudgePro;
+			productReference = D7DDC53C6F6BDB6C9686FC64 /* NudgePro.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96739E1FCA4977DB6953F86A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					7A230887A4FADE389EE69C75 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A833FBFAAF549040DAA3B4C0 /* Build configuration list for PBXProject "NudgePro" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 51F7F3FB2D1DC4B1DB9FB5A3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A230887A4FADE389EE69C75 /* NudgePro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D080DFC77B68EA52CC04995 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC2460FDA8CE3AAFD87BA9C6 /* Assets.xcassets in Resources */,
+				F11B3CF5BCAD4F9467B6FE45 /* whisper_transcribe.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F85FA12B1887477D8AA0930 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EED245E2F54F46CC9797FB17 /* AnthropicProvider.swift in Sources */,
+				D5341B6088B5E1D096B56E3E /* AppDelegate.swift in Sources */,
+				E6AFDF277E0C1A4FDA167B34 /* AppState.swift in Sources */,
+				FE8D05104A3491E23C739D06 /* AudioDeviceManager.swift in Sources */,
+				4C8EB50EAB8DD5091892CC82 /* ButtonStyles.swift in Sources */,
+				68FC3E60A91E3E0334E57BD0 /* CustomProvider.swift in Sources */,
+				44BB0902AB39B1446D8EFD09 /* DesignTokens.swift in Sources */,
+				BF78B31E5017D6EA356707CF /* DisplayManager.swift in Sources */,
+				65E76D6A4F80F61DA7B40D06 /* Enums.swift in Sources */,
+				11225658F7D4121FD03C25CF /* Errors.swift in Sources */,
+				0900F15CCCC3ECC6129AF3B7 /* ExportService.swift in Sources */,
+				FB1D9AFFC405E7D16898A6DE /* LLMProviderProtocol.swift in Sources */,
+				DDAD274CD4512B02360B27FB /* LLMService.swift in Sources */,
+				DC3B887F569CF59F5857B36E /* LinearButton.swift in Sources */,
+				A540431218D570914E0CB369 /* LinearCard.swift in Sources */,
+				E73B20AEE2269E902ECF88C5 /* MeetingTemplate.swift in Sources */,
+				8FB1AAB983AC92FB6552354A /* MockRecordingService.swift in Sources */,
+				3475A40B33ABDA799C4C74B4 /* MonitorSelectionMode.swift in Sources */,
+				358A8F3DDDE3B022CC2E574E /* NativeScreenCaptureService.swift in Sources */,
+				83E434248C672462B8D3F3A6 /* NudgeProApp.swift in Sources */,
+				E8A1C333E4F6E30C9951C872 /* OllamaProvider.swift in Sources */,
+				B7D87C79397B884C00F67B5E /* OnboardingView.swift in Sources */,
+				0F56A1D18402690B9AE63BEB /* OpenAIProvider.swift in Sources */,
+				F2302AA2701CCD8D6B0A5032 /* PermissionStatus.swift in Sources */,
+				6F5F9271D2A1CE5E0AB5583E /* PermissionsManager.swift in Sources */,
+				45192C10577E61207F2CC10A /* ProcessingQueue.swift in Sources */,
+				B690815A5F8E5C4EDFC7B15B /* RecordingServiceProtocol.swift in Sources */,
+				935DAC767613FCA542C40E0A /* RecordingView.swift in Sources */,
+				23503C3C4F546C1A30699DE9 /* RecordingViewModel.swift in Sources */,
+				A2826671EBFBEC66C5379245 /* Session.swift in Sources */,
+				5A8D57490BF32474725667A1 /* SessionDetailView.swift in Sources */,
+				88B4C3E3810A459F8CC5B95A /* SessionStore.swift in Sources */,
+				BB4A6485E76D6F69FBF887EC /* SettingsView.swift in Sources */,
+				28584DA28A392A9C2C1A4040 /* SettingsViewModel.swift in Sources */,
+				464CEEBDB8F4E358FB1892CD /* Strings.swift in Sources */,
+				C0F15A4017DFE13FF0AECE14 /* Theme.swift in Sources */,
+				EB786A4919BE431B0AE1BE2D /* TimeIntervalExtension.swift in Sources */,
+				B1B05320C1605C5F2198A8EC /* TranscriptionService.swift in Sources */,
+				25B6E32A8F5289543A803E8B /* UserPreferences.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0E3FABC77C26AE9F347FCA6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NudgePro/NudgePro.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NudgePro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nudge.pro2;
+				PRODUCT_NAME = "Nudge Pro";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		5FF678403257393441FC5F74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		75C3CBD97F93E3A6036644B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		B5FDFD999652D89E4471D869 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NudgePro/NudgePro.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NudgePro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nudge.pro2;
+				PRODUCT_NAME = "Nudge Pro";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		030338D5FFED869296207814 /* Build configuration list for PBXNativeTarget "NudgePro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E3FABC77C26AE9F347FCA6A /* Debug */,
+				B5FDFD999652D89E4471D869 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A833FBFAAF549040DAA3B4C0 /* Build configuration list for PBXProject "NudgePro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FF678403257393441FC5F74 /* Debug */,
+				75C3CBD97F93E3A6036644B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96739E1FCA4977DB6953F86A /* Project object */;
+}
