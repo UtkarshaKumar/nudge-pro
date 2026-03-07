@@ -12,7 +12,7 @@ struct SessionDetailView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Tab picker
+            // Centered Tab picker
             Picker("", selection: $selectedTab) {
                 ForEach(DetailTab.allCases, id: \.self) { tab in
                     Text(tab.rawValue)
@@ -21,8 +21,8 @@ struct SessionDetailView: View {
                 }
             }
             .pickerStyle(.segmented)
-            .padding(.horizontal)
-            .padding(.vertical, 12)
+            .frame(maxWidth: 280)
+            .padding(.vertical, 16)
             
             Divider()
             
@@ -34,6 +34,7 @@ struct SessionDetailView: View {
                 RecordingPlaybackView(session: session)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(session.title)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -50,76 +51,137 @@ struct MeetingNotesView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DesignTokens.Spacing.lg) {
-                // Meeting Notes Content
+            VStack(alignment: .leading, spacing: 28) {
+                // Meeting Notes Section
                 if let notes = session.notes, !notes.isEmpty {
-                    VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
-                        Text("Meeting Notes")
-                            .font(DesignTokens.Typography.title)
-                            .foregroundColor(DesignTokens.Colors.text)
-                        
-                        Text(notes)
-                            .font(DesignTokens.Typography.body)
-                            .foregroundColor(DesignTokens.Colors.text)
-                            .textSelection(.enabled)
+                    VStack(alignment: .leading, spacing: 12) {
+                        FormattedMeetingNotes(notes: notes)
                     }
-                    .frame(maxWidth: 700)
-                    .padding(.horizontal)
+                    .frame(maxWidth: 680, alignment: .leading)
                 }
                 
-                Divider()
-                    .padding(.horizontal)
-                
-                // Action Items
+                // Action Items Section
                 if !session.actions.isEmpty {
-                    VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text("Action Items")
-                            .font(DesignTokens.Typography.title)
+                            .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(DesignTokens.Colors.text)
                         
-                        ForEach(session.actions) { action in
-                            ActionItemRow(action: action)
+                        VStack(alignment: .leading, spacing: 8) {
+                            ForEach(session.actions) { action in
+                                ActionItemRow(action: action)
+                            }
                         }
                     }
-                    .frame(maxWidth: 700)
-                    .padding(.horizontal)
+                    .frame(maxWidth: 680, alignment: .leading)
                 }
                 
-                Divider()
-                    .padding(.horizontal)
-                
-                // Transcript
+                // Transcript Section
                 if let transcript = session.transcript, !transcript.isEmpty {
-                    VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
-                        Text("Transcript")
-                            .font(DesignTokens.Typography.title)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Full Transcript")
+                            .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(DesignTokens.Colors.text)
                         
                         Text(transcript)
-                            .font(DesignTokens.Typography.body)
+                            .font(.system(size: 15))
                             .foregroundColor(DesignTokens.Colors.textSecondary)
+                            .lineSpacing(6)
                             .textSelection(.enabled)
                     }
-                    .padding()
+                    .frame(maxWidth: 680, alignment: .leading)
                 }
                 
-                // Empty state if no notes
+                // Empty state
                 if (session.notes?.isEmpty ?? true) && session.actions.isEmpty && (session.transcript?.isEmpty ?? true) {
-                    VStack(spacing: DesignTokens.Spacing.md) {
+                    VStack(spacing: 16) {
                         Image(systemName: "doc.text")
                             .font(.system(size: 48))
                             .foregroundColor(DesignTokens.Colors.textTertiary)
                         
                         Text("No meeting notes available")
-                            .font(DesignTokens.Typography.body)
+                            .font(.system(size: 16))
                             .foregroundColor(DesignTokens.Colors.textSecondary)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 60)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 80)
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .background(DesignTokens.Colors.background)
+    }
+}
+
+// Formatted meeting notes view with better hierarchy
+struct FormattedMeetingNotes: View {
+    let notes: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            // Parse and display notes with formatting
+            let lines = notes.components(separatedBy: .newlines)
+            
+            ForEach(Array(lines.enumerated()), id: \.offset) { index, line in
+                if !line.isEmpty {
+                    FormattedLine(line: line)
                 }
             }
         }
-        .background(DesignTokens.Colors.background)
+        .textSelection(.enabled)
+    }
+}
+
+struct FormattedLine: View {
+    let line: String
+    
+    var body: some View {
+        let trimmed = line.trimmingCharacters(in: .whitespaces)
+        
+        if trimmed.hasPrefix("# ") {
+            // H1
+            Text(trimmed.dropFirst(2))
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(DesignTokens.Colors.text)
+        } else if trimmed.hasPrefix("## ") {
+            // H2
+            Text(trimmed.dropFirst(3))
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(DesignTokens.Colors.text)
+                .padding(.top, 8)
+        } else if trimmed.hasPrefix("### ") {
+            // H3
+            Text(trimmed.dropFirst(4))
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundColor(DesignTokens.Colors.text)
+                .padding(.top, 4)
+        } else if trimmed.hasPrefix("* ") || trimmed.hasPrefix("- ") {
+            // Bullet point
+            HStack(alignment: .top, spacing: 8) {
+                Text("•")
+                    .font(.system(size: 15))
+                    .foregroundColor(DesignTokens.Colors.textSecondary)
+                Text(trimmed.dropFirst(2))
+                    .font(.system(size: 15))
+                    .foregroundColor(DesignTokens.Colors.text)
+                    .lineSpacing(4)
+            }
+        } else if trimmed.hasPrefix("**") && trimmed.hasSuffix("**") {
+            // Bold text
+            let start = trimmed.index(trimmed.startIndex, offsetBy: 2)
+            let end = trimmed.index(trimmed.endIndex, offsetBy: -2)
+            Text(String(trimmed[start..<end]))
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundColor(DesignTokens.Colors.text)
+        } else {
+            // Regular text
+            Text(trimmed)
+                .font(.system(size: 15))
+                .foregroundColor(DesignTokens.Colors.text)
+                .lineSpacing(4)
+        }
     }
 }
 
@@ -127,42 +189,42 @@ struct ActionItemRow: View {
     let action: ActionItem
     
     var body: some View {
-        HStack(alignment: .top, spacing: DesignTokens.Spacing.sm) {
+        HStack(alignment: .top, spacing: 12) {
             Image(systemName: action.status == .completed ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(action.status == .completed ? .green : .secondary)
-                .font(.system(size: 16))
+                .foregroundColor(action.status == .completed ? Color.green : Color.gray.opacity(0.4))
+                .font(.system(size: 20))
+                .frame(width: 24)
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(action.task)
-                    .font(DesignTokens.Typography.body)
-                    .foregroundColor(DesignTokens.Colors.text)
+                    .font(.system(size: 15))
+                    .foregroundColor(action.status == .completed ? DesignTokens.Colors.textSecondary : DesignTokens.Colors.text)
                     .strikethrough(action.status == .completed)
                 
-                HStack(spacing: DesignTokens.Spacing.sm) {
+                HStack(spacing: 16) {
                     if let assignee = action.assignee {
                         Label(assignee, systemImage: "person")
-                            .font(.caption)
+                            .font(.system(size: 13))
                             .foregroundColor(DesignTokens.Colors.textSecondary)
                     }
                     
                     if let deadline = action.deadline {
                         Label(deadline, systemImage: "calendar")
-                            .font(.caption)
+                            .font(.system(size: 13))
                             .foregroundColor(DesignTokens.Colors.textSecondary)
                     }
                 }
                 
                 if let sourceQuote = action.sourceQuote {
                     Text("\"\(sourceQuote)\"")
-                        .font(.caption)
-                        .foregroundColor(DesignTokens.Colors.textTertiary)
+                        .font(.system(size: 13))
                         .italic()
+                        .foregroundColor(DesignTokens.Colors.textTertiary)
+                        .padding(.top, 2)
                 }
             }
         }
-        .padding(DesignTokens.Spacing.sm)
-        .background(DesignTokens.Colors.surface)
-        .cornerRadius(8)
+        .padding(.vertical, 8)
     }
 }
 
@@ -173,20 +235,19 @@ struct RecordingPlaybackView: View {
     
     var body: some View {
         Group {
-            // First try audioPath, then fall back to notesPath
             if let audioPath = session.audioPath, FileManager.default.fileExists(atPath: audioPath.path) {
-                VStack(spacing: DesignTokens.Spacing.lg) {
+                VStack(spacing: 32) {
                     Spacer()
                     
-                    Image(systemName: "waveform")
-                        .font(.system(size: 64))
-                        .foregroundColor(DesignTokens.Colors.accent)
+                    // Waveform visualization
+                    WaveformView()
+                        .frame(height: 80)
                     
                     Text("Meeting Recording")
-                        .font(DesignTokens.Typography.title)
+                        .font(.system(size: 24, weight: .semibold))
                         .foregroundColor(DesignTokens.Colors.text)
                     
-                    // Simple play/pause button
+                    // Play button
                     Button(action: {
                         if isPlaying {
                             player?.pause()
@@ -195,30 +256,33 @@ struct RecordingPlaybackView: View {
                         }
                         isPlaying.toggle()
                     }) {
-                        HStack {
-                            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                .font(.system(size: 40))
+                        HStack(spacing: 8) {
+                            Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                                .font(.system(size: 20))
                             Text(isPlaying ? "Pause" : "Play")
-                                .font(.headline)
+                                .font(.system(size: 16, weight: .medium))
                         }
-                        .frame(minWidth: 120)
+                        .foregroundColor(.white)
+                        .frame(width: 140, height: 48)
+                        .background(DesignTokens.Colors.accent)
+                        .cornerRadius(24)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
+                    .buttonStyle(PlainButtonStyle())
                     
                     Button("Open in Finder") {
                         NSWorkspace.shared.selectFile(audioPath.path, inFileViewerRootedAtPath: "")
                     }
-                    .buttonStyle(.bordered)
+                    .font(.system(size: 14))
+                    .foregroundColor(DesignTokens.Colors.accent)
                     
                     Text(audioPath.lastPathComponent)
-                        .font(.caption)
+                        .font(.system(size: 12))
                         .foregroundColor(DesignTokens.Colors.textSecondary)
                     
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(DesignTokens.Spacing.xl)
+                .padding(.horizontal, 40)
                 .onAppear {
                     player = AVPlayer(url: audioPath)
                 }
@@ -227,8 +291,7 @@ struct RecordingPlaybackView: View {
                     player = nil
                 }
             } else if let notesPath = session.notesPath, FileManager.default.fileExists(atPath: notesPath.path) {
-                // Show meeting notes file location
-                VStack(spacing: DesignTokens.Spacing.md) {
+                VStack(spacing: 24) {
                     Spacer()
                     
                     Image(systemName: "doc.text")
@@ -236,11 +299,11 @@ struct RecordingPlaybackView: View {
                         .foregroundColor(DesignTokens.Colors.textTertiary)
                     
                     Text("Meeting Notes File")
-                        .font(DesignTokens.Typography.title)
+                        .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(DesignTokens.Colors.text)
                     
                     Text(notesPath.path)
-                        .font(.caption)
+                        .font(.system(size: 13))
                         .foregroundColor(DesignTokens.Colors.textSecondary)
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
@@ -253,9 +316,9 @@ struct RecordingPlaybackView: View {
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(DesignTokens.Spacing.xl)
+                .padding(40)
             } else {
-                VStack(spacing: DesignTokens.Spacing.md) {
+                VStack(spacing: 20) {
                     Spacer()
                     
                     Image(systemName: "waveform.slash")
@@ -263,12 +326,12 @@ struct RecordingPlaybackView: View {
                         .foregroundColor(DesignTokens.Colors.textTertiary)
                     
                     Text("Audio recording not available")
-                        .font(DesignTokens.Typography.body)
+                        .font(.system(size: 17))
                         .foregroundColor(DesignTokens.Colors.textSecondary)
                     
                     if let audioPath = session.audioPath {
                         Text(audioPath.path)
-                            .font(.caption)
+                            .font(.system(size: 12))
                             .foregroundColor(DesignTokens.Colors.textTertiary)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
@@ -277,9 +340,40 @@ struct RecordingPlaybackView: View {
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(DesignTokens.Spacing.xl)
+                .padding(40)
             }
         }
         .background(DesignTokens.Colors.background)
+    }
+}
+
+// Simple animated waveform view
+struct WaveformView: View {
+    @State private var phase = 0.0
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(0..<30) { index in
+                WaveformBar(index: index, phase: phase)
+            }
+        }
+        .onAppear {
+            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                phase = .pi * 2
+            }
+        }
+    }
+}
+
+struct WaveformBar: View {
+    let index: Int
+    let phase: Double
+    
+    var body: some View {
+        let height = 20 + 40 * abs(sin(phase + Double(index) * 0.3))
+        
+        RoundedRectangle(cornerRadius: 2)
+            .fill(DesignTokens.Colors.accent.opacity(0.6))
+            .frame(width: 4, height: height)
     }
 }

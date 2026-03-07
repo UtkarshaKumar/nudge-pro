@@ -25,7 +25,8 @@ struct NudgeProApp: App {
                 }
         }
         .windowStyle(.hiddenTitleBar)
-        .defaultSize(width: 900, height: 650)
+        .defaultSize(width: 1200, height: 800)
+        .windowResizability(.contentMinSize)
         .commands {
             CommandGroup(replacing: .appInfo) {
                 Button("About Nudge") {
@@ -74,6 +75,7 @@ struct ContentView: View {
             case .recording:
                 RecordingView()
             case .history:
+                // Use simple layout instead of nested NavigationSplitView
                 HistoryView()
             case .search:
                 SearchView()
@@ -87,12 +89,12 @@ struct HistoryView: View {
     @State private var sessions: [Session] = []
     @State private var selectedSession: Session?
     @State private var showingExportSheet = false
-    @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
     private let exportService = ExportService()
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        HStack(spacing: 0) {
+            // Left column - Session list
             VStack(spacing: 0) {
                 if sessions.isEmpty {
                     emptyState
@@ -121,12 +123,14 @@ struct HistoryView: View {
                     }
                 }
             }
+            .frame(minWidth: 320, idealWidth: 380, maxWidth: 500)
+            .frame(maxHeight: .infinity)
+            .background(Color(NSColor.controlBackgroundColor))
             .navigationTitle("History")
-            .navigationSplitViewColumnWidth(min: 460, ideal: 580, max: 720)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button("Show All") {
-                        columnVisibility = .all
+                        // No-op for simple layout
                     }
                     .help("Show all columns")
                 }
@@ -139,16 +143,21 @@ struct HistoryView: View {
                     ExportSheet(session: session)
                 }
             }
-        } detail: {
+            
+            // Divider between columns
+            Divider()
+            
+            // Right column - Session detail
             if let session = selectedSession {
                 SessionDetailView(session: session)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             } else {
                 Text("Select a meeting to view details")
                     .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
         }
-        .navigationSplitViewStyle(.balanced)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var emptyState: some View {
