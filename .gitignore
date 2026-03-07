@@ -1,0 +1,24 @@
+# Build
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# OS
+.DS_Store
+*.swp
+*~
+
+# Dependencies
+# (Add if using SPM or CocoaPods)
+
+# Archives
+*.dmg
+*.zip
+
+# Secrets
+.env
+*.env
+
+# IDE
+*.xcuserstate
