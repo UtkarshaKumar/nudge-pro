@@ -19,15 +19,13 @@ final class RecordingViewModel: ObservableObject {
     // MARK: - Dependencies
 
     private let recordingService: RecordingServiceProtocol
-    private let processingQueue: ProcessingQueue
     private let permissionsManager = PermissionsManager()
     private var timer: Timer?
 
     // MARK: - Initialization
 
     init(
-        recordingService: RecordingServiceProtocol? = nil,
-        processingQueue: ProcessingQueue? = nil
+        recordingService: RecordingServiceProtocol? = nil
     ) {
         if #available(macOS 13.0, *), recordingService == nil {
             self.recordingService = NativeScreenCaptureService()
@@ -36,8 +34,6 @@ final class RecordingViewModel: ObservableObject {
         } else {
             fatalError("RecordingService required for macOS < 13.0")
         }
-
-        self.processingQueue = processingQueue ?? ProcessingQueue()
 
         Task {
             await loadDisplays()
@@ -156,9 +152,6 @@ final class RecordingViewModel: ObservableObject {
                 currentSession = nil
                 elapsedTime = 0
                 
-                // Process in background - don't await
-                processInBackground(session: session)
-                
             } catch let error as RecordingError {
                 print("Stop error: \(error.localizedDescription)")
                 errorMessage = error.localizedDescription
@@ -167,19 +160,6 @@ final class RecordingViewModel: ObservableObject {
                 print("Processing error: \(error.localizedDescription)")
                 errorMessage = error.localizedDescription
                 recordingState = .error(error.localizedDescription)
-            }
-        }
-    }
-    
-    /// Process session in background
-    private func processInBackground(session: Session) {
-        Task.detached(priority: .userInitiated) {
-            do {
-                print("Background: Starting processing...")
-                let processedSession = try await self.processingQueue.processSession(session)
-                print("Background: Processing complete - \(processedSession.title)")
-            } catch {
-                print("Background: Processing failed - \(error.localizedDescription)")
             }
         }
     }

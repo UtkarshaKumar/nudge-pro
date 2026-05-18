@@ -3,29 +3,43 @@ import Speech
 
 class TranscriptionService {
     
-    private let developmentScriptPath = "/Users/utkarshkumar/Documents/Utkarsh 26 Workspace/10-19 Work/11 Projects/nudge-pro/NudgePro/Resources/Scripts/whisper_transcribe.py"
     private let bundleScriptName = "whisper_transcribe"
     
     /// Checks if external Whisper transcription is available
     func isWhisperAvailable() -> Bool {
-        let scriptPath = resolveScriptPath()
+        guard let scriptPath = resolveScriptPath() else {
+            print("🔍 Whisper script not found in bundle or development paths")
+            return false
+        }
         let exists = FileManager.default.fileExists(atPath: scriptPath)
         print("🔍 Whisper script path: \(scriptPath), exists: \(exists)")
         return exists
     }
     
-    private func resolveScriptPath() -> String {
-        // First try development path
-        if FileManager.default.fileExists(atPath: developmentScriptPath) {
-            return developmentScriptPath
-        }
-        
-        // Then try bundle path
+    private func resolveScriptPath() -> String? {
+        // Production: check app bundle first
         if let bundlePath = Bundle.main.path(forResource: bundleScriptName, ofType: "py") {
             return bundlePath
         }
         
-        return developmentScriptPath
+        // Development: look relative to the executable's build directory
+        if let executableURL = Bundle.main.executableURL {
+            let buildProductsDir = executableURL
+                .deletingLastPathComponent()  // MacOS/
+                .deletingLastPathComponent()  // NudgePro.app/
+                .deletingLastPathComponent()  // Debug or Release/
+            let projectRoot = buildProductsDir
+                .deletingLastPathComponent()  // Build/
+                .deletingLastPathComponent()  // Products/
+            let devScriptPath = projectRoot
+                .appendingPathComponent("NudgePro/Resources/Scripts/whisper_transcribe.py")
+                .path
+            if FileManager.default.fileExists(atPath: devScriptPath) {
+                return devScriptPath
+            }
+        }
+        
+        return nil
     }
     
     /// Checks if speech recognition is authorized
@@ -55,10 +69,10 @@ class TranscriptionService {
         }
         
         // Try Whisper first
-        if isWhisperAvailable() {
+        if isWhisperAvailable(), let scriptPath = resolveScriptPath() {
             do {
                 print("🎙️ Trying Whisper transcription...")
-                let transcript = try await transcribeWithWhisper(audioURL: videoURL)
+                let transcript = try await transcribeWithWhisper(audioURL: videoURL, scriptPath: scriptPath)
                 print("✅ Whisper transcription complete: \(transcript.count) characters")
                 return transcript
             } catch {
@@ -74,8 +88,7 @@ class TranscriptionService {
     }
     
     /// Transcribes using external Whisper Python script
-    private func transcribeWithWhisper(audioURL: URL) async throws -> String {
-        let scriptPath = resolveScriptPath()
+    private func transcribeWithWhisper(audioURL: URL, scriptPath: String) async throws -> String {
         let outputPath = audioURL.deletingPathExtension().path + "_transcript.json"
         
         let process = Process()

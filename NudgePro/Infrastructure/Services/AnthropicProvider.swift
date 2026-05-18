@@ -38,7 +38,7 @@ class AnthropicProvider: LLMProviderProtocol {
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (_, response) = try await NetworkConfig.sharedSession.data(for: request)
             let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
             return statusCode == 200 || statusCode == 400
         } catch {
@@ -140,7 +140,7 @@ class AnthropicProvider: LLMProviderProtocol {
         
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await NetworkConfig.sharedSession.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw LLMError.networkError("No response")

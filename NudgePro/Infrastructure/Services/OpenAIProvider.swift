@@ -22,7 +22,7 @@ class OpenAIProvider: LLMProviderProtocol {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (_, response) = try await NetworkConfig.sharedSession.data(for: request)
             return (response as? HTTPURLResponse)?.statusCode == 200
         } catch {
             return false
@@ -38,7 +38,7 @@ class OpenAIProvider: LLMProviderProtocol {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (_, response) = try await NetworkConfig.sharedSession.data(for: request)
             return (response as? HTTPURLResponse)?.statusCode == 200
         } catch {
             return false
@@ -139,7 +139,7 @@ class OpenAIProvider: LLMProviderProtocol {
         
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await NetworkConfig.sharedSession.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw LLMError.networkError("No response")

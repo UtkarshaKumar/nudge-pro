@@ -24,7 +24,7 @@ class CustomProvider: LLMProviderProtocol {
         }
         
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (_, response) = try await NetworkConfig.sharedSession.data(for: request)
             let status = (response as? HTTPURLResponse)?.statusCode ?? 0
             return status == 200 || status == 401
         } catch {
@@ -133,7 +133,7 @@ class CustomProvider: LLMProviderProtocol {
         
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await NetworkConfig.sharedSession.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw LLMError.networkError("No response")

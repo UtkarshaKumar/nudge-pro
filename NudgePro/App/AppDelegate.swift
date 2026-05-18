@@ -5,9 +5,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var statusMenu: NSMenu?
     
-    // Meeting apps to monitor
-    private let meetingApps = [
-        "zoom.us": "Zoom",
+    // Meeting apps to monitor (exact bundle IDs)
+    private let meetingApps: [String: String] = [
+        "us.zoom.xos": "Zoom",
         "com.microsoft.teams": "Microsoft Teams",
         "com.google.Chrome": "Google Meet (Chrome)",
         "com.apple.Safari": "Safari"
@@ -117,13 +117,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication,
               let bundleId = app.bundleIdentifier else { return }
         
-        // Check if it's a meeting app
-        for (bid, name) in meetingApps {
-            if bundleId.contains(bid) || bid == bundleId {
-                print("Meeting app detected: \(name)")
-                showMeetingAppAlert(appName: name)
-                break
-            }
+        // Check if it's a meeting app (exact match)
+        if let name = meetingApps[bundleId] {
+            print("Meeting app detected: \(name)")
+            showMeetingAppAlert(appName: name)
         }
     }
     

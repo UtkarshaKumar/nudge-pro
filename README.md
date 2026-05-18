@@ -2,13 +2,18 @@
 
 A macOS meeting recording app that records, transcribes, and generates AI-powered meeting notes.
 
+![Nudge Pro Screenshot](screenshot.png)
+
 ## Features
 
 - **Audio Recording** - Record meeting audio using microphone and system audio
-- **Transcription** - Automatic speech-to-text using Apple's Speech framework
+- **Transcription** - Automatic speech-to-text using Apple's Speech framework with Whisper fallback
 - **AI Meeting Notes** - Generate summaries and action items using LLM
+- **Session Detail View** - Per-session view with notes, action items, and transcripts
 - **Session History** - Browse and search past meetings
-- **Export** - Export notes as Markdown
+- **Export** - Export notes as Markdown, Plain Text, or JSON
+- **Menu Bar Integration** - Quick recording controls in macOS menu bar
+- **Meeting Detection** - Auto-detects Zoom, Teams, and Google Meet launches
 
 ## Supported LLM Providers
 
@@ -52,14 +57,37 @@ ollama serve
 
 ## Keyboard Shortcuts
 
+- `Cmd+Shift+R` - Start Recording
+- `Cmd+Shift+S` - Stop Recording
 - `Cmd+Shift+O` - Reopen onboarding
 
-## Privacy
+## Architecture
 
+```
+NudgePro/
+  App/            - App entry, app delegate, state
+  Design/         - Design tokens (delegates to Theme.swift)
+  Domain/         - Entities, enums, errors, protocols
+  Infrastructure/ - Services (LLM, recording, storage, keychain)
+  Localization/   - UI string constants
+  Presentation/   - ViewModels + Views
+```
+
+## Security
+
+- **API keys stored in macOS Keychain** - OpenAI, Anthropic, and Custom provider keys are stored securely using the Keychain, not in plaintext UserDefaults
+- **Network timeouts** - All LLM requests have 30s request timeout and 60s resource timeout
 - All recordings stored locally on your Mac
 - Transcription uses Apple's on-device Speech framework
 - AI processing runs locally (Ollama) or via your API keys (OpenAI/Anthropic)
 - No data sent to external servers unless you use cloud AI providers
+
+## Privacy
+
+- All recordings stored locally in `~/Documents/Nudge Sessions/`
+- Transcription uses Apple's on-device Speech framework with optional Whisper fallback
+- AI processing runs locally (Ollama) or via your API keys (OpenAI/Anthropic)
+- No analytics, no telemetry, no tracking
 
 ## License
 

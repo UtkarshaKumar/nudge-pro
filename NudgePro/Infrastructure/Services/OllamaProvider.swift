@@ -14,7 +14,7 @@ class OllamaProvider: LLMProviderProtocol {
     func checkAvailability() async -> Bool {
         guard let url = URL(string: "\(baseURL)/api/tags") else { return false }
         do {
-            let (_, response) = try await URLSession.shared.data(from: url)
+            let (_, response) = try await NetworkConfig.sharedSession.data(from: url)
             return (response as? HTTPURLResponse)?.statusCode == 200
         } catch {
             return false
@@ -29,7 +29,7 @@ class OllamaProvider: LLMProviderProtocol {
         guard let url = URL(string: "\(baseURL)/api/tags") else { return [] }
         
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await NetworkConfig.sharedSession.data(from: url)
             if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                let models = json["models"] as? [[String: Any]] {
                 return models.compactMap { $0["name"] as? String }
@@ -136,7 +136,7 @@ class OllamaProvider: LLMProviderProtocol {
         
         print("OllamaProvider: Calling model '\(model)' with prompt length: \(prompt.count)")
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await NetworkConfig.sharedSession.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             print("OllamaProvider: No HTTP response")

@@ -27,10 +27,10 @@ class UserPreferences: ObservableObject {
         didSet { UserDefaults.standard.set(llmProvider.rawValue, forKey: "llmProvider") }
     }
     @Published var openAIAPIKey: String {
-        didSet { UserDefaults.standard.set(openAIAPIKey, forKey: "openAIAPIKey") }
+        didSet { KeychainManager.save(openAIAPIKey, for: .openAI) }
     }
     @Published var anthropicAPIKey: String {
-        didSet { UserDefaults.standard.set(anthropicAPIKey, forKey: "anthropicAPIKey") }
+        didSet { KeychainManager.save(anthropicAPIKey, for: .anthropic) }
     }
     @Published var openAIModel: String {
         didSet { UserDefaults.standard.set(openAIModel, forKey: "openAIModel") }
@@ -40,7 +40,7 @@ class UserPreferences: ObservableObject {
     }
     // Custom provider settings
     @Published var customAPIKey: String {
-        didSet { UserDefaults.standard.set(customAPIKey, forKey: "customAPIKey") }
+        didSet { KeychainManager.save(customAPIKey, for: .custom) }
     }
     @Published var customEndpoint: String {
         didSet { UserDefaults.standard.set(customEndpoint, forKey: "customEndpoint") }
@@ -79,11 +79,11 @@ class UserPreferences: ObservableObject {
         } else {
             self.llmProvider = .ollama  // Default to Ollama - free and runs locally
         }
-        self.openAIAPIKey = defaults.string(forKey: "openAIAPIKey") ?? ""
-        self.anthropicAPIKey = defaults.string(forKey: "anthropicAPIKey") ?? ""
+        self.openAIAPIKey = KeychainManager.load(for: .openAI) ?? ""
+        self.anthropicAPIKey = KeychainManager.load(for: .anthropic) ?? ""
         self.openAIModel = defaults.string(forKey: "openAIModel") ?? "gpt-4o-mini"
         self.anthropicModel = defaults.string(forKey: "anthropicModel") ?? "claude-3-haiku-20240307"
-        self.customAPIKey = defaults.string(forKey: "customAPIKey") ?? ""
+        self.customAPIKey = KeychainManager.load(for: .custom) ?? ""
         self.customEndpoint = defaults.string(forKey: "customEndpoint") ?? "http://localhost:1234/v1"
         self.customModel = defaults.string(forKey: "customModel") ?? "llama3.2"
         
