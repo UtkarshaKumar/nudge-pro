@@ -1,8 +1,14 @@
 # Nudge Pro
 
-A macOS meeting recording app that records, transcribes, and generates AI-powered meeting notes.
+Record meetings silently, without clicking anything.
 
 ![Nudge Pro Screenshot](screenshot.png)
+
+## Why I built it
+
+Every meeting recorder I tried required me to do something — open an app, hit record, remember to stop it. I wanted the opposite: something that notices when a meeting starts, handles everything in the background, and has notes waiting for me when I'm done.
+
+Nudge Pro lives in your menu bar and auto-detects when Zoom, Teams, or Google Meet launches. It starts recording, transcribes locally, and generates a summary — without you touching a thing.
 
 ## Features
 
@@ -91,4 +97,4 @@ NudgePro/
 
 ## License
 
-MIT
+The app is free to download and use. The source code is not licensed for reuse or redistribution.
